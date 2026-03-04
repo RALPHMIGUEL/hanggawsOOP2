@@ -46,16 +46,32 @@ abstract class GameCharacter {
     public abstract int attack();                                                       // Cansancio (3 classes)
 }
 
-class StreetUnit extends GameCharacter implements Committable {                  //Sabellano (3 classes)
+                                                                                        //Sabellano (3 classes)
+ /**
+ * Represents a unit in the streets that can join operations.
+ * Base class for all street characters like Brawler and Hacker.
+ */
+
+class StreetUnit extends GameCharacter implements Committable {                  
 
     public StreetUnit(String name, int health, int attackPower) {
         super(name, health, attackPower);
     }
 
+    /**
+     * Performs a basic attack using the unit's attack power.
+     * @return attack damage as an integer
+     */
+
     @Override
     public int attack() {
         return getAttackPower();
     }
+
+    /**
+     * Executes the given operation and prints which operation the unit joined.
+     * @param operation The operation to commit to
+     */ 
 
     @Override
     public void commitOperation(Operation operation) {
@@ -63,30 +79,45 @@ class StreetUnit extends GameCharacter implements Committable {                 
     }
 }
 
+/**
+ * A melee-focused brawler with extra attack bonus.
+ */
 class Brawler extends StreetUnit {
 
     public Brawler(String name) {
         super(name, 120, 25);
     }
 
+    /**
+     * Performs a melee attack with additional bonus damage.
+     * @return total attack damage
+     */
     @Override
     public int attack() {
         return getAttackPower() + 10; // Extra melee bonus
     }
 }
 
+
+/**
+ * A hacker who can perform cyber attacks with a small bonus.
+ */
 class Hacker extends StreetUnit {
 
     public Hacker(String name) {
         super(name, 80, 15);
     }
 
+    /**
+     * Performs a cyber attack and prints a message.
+     * @return total attack damage
+     */
     @Override
     public int attack() {
         System.out.println(getName() + " performs a cyber attack!");
         return getAttackPower() + 5;
     }
-}                                                                                        //Sabellano (3 classes)
+}                                                                                       //Sabellano (3 classes)
 
 abstract class LawEnforcement extends GameCharacter implements WeaponSystem {         //Rabaya(3 classes)
 
